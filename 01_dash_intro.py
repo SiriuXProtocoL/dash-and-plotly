@@ -5,7 +5,6 @@ import dash_html_components as html
 
 app = dash.Dash()
 
-
 app.layout = html.Div(children = [
     html.H1("Dash App"),
     dcc.Graph(id = 'example',
