@@ -1,4 +1,4 @@
-#/usr/bin/python3 -m pip install textblob vadersentiment
+#/usr/bin/python3 -m pip install textblob 
 from textblob import TextBlob
 import io
 
@@ -8,8 +8,8 @@ pos_correct = 0
 with io.open("data/positive.txt","r", encoding='latin-1') as f:
     for line in f.read().split('\n'):
         analysis = TextBlob(line)
-        #the objectivity to subjectivity threshold
-        if analysis.sentiment.subjectivity > 0.8:
+
+        if analysis.sentiment.polarity >= 0.0001:
             #the polarity threshold
             if analysis.sentiment.polarity > 0:
                 pos_correct += 1
@@ -22,8 +22,8 @@ neg_correct = 0
 with io.open("data/negative.txt","r", encoding='latin-1') as f:
     for line in f.read().split('\n'):
         analysis = TextBlob(line)
-        #the objectivity to subjectivity threshold
-        if analysis.sentiment.subjectivity > 0.8:
+        
+        if analysis.sentiment.polarity <= -0.0001:
             #the polarity threshold
             if analysis.sentiment.polarity <= 0:
                 neg_correct += 1
